@@ -10,8 +10,8 @@ function addImageToThumbnails() {
     img.style.position = 'absolute';
     img.style.bottom = '0';
     img.style.right = '0';
-    img.style.width = '50%';
-    img.style.height = '50%';
+    img.style.maxWidth = '55%';
+    img.style.maxHeight = '41%';
     img.style.zIndex = '10';
     img.classList.add('overlay-image');
 
