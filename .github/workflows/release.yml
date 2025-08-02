@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Zip Extension
-      run: zip -r chrome-ext-with-fwmc.zip . -x "images/*" ".github/*" "CLAUDE.md"
+      run: zip -r chrome-ext-with-fwmc.zip . -x "images/*" ".github/*" "CLAUDE.md" ".git/*"
 
     - name: Create Release
       id: create_release
