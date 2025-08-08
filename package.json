@@ -24,6 +24,7 @@
     "build": "pnpm run compile && web-ext build --source-dir=dist --overwrite-dest",
     "build:chrome": "TARGET_BROWSER=chrome WEB_EXT_ARTIFACTS_DIR='web-ext-artifacts/chrome' pnpm run build",
     "build:firefox": "TARGET_BROWSER=firefox WEB_EXT_ARTIFACTS_DIR='web-ext-artifacts/firefox' pnpm run build",
+    "build:both": "pnpm run build:chrome && pnpm run build:firefox",
     "lint": "eslint --ext .ts,.js src",
     "lint:fix": "eslint --ext .ts,.js src --fix",
     "watch": "rm -r dist ; webpack --config webpack.config.js --watch",

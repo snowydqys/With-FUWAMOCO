@@ -38,6 +38,7 @@ The following npm scripts are available to make your life easier. You can run th
 - `build`: Runs the `compile` script, runs `web-ext build` with the correct source destination, and outputs in `web-ext-artifacts`
 - `build:chrome`: Runs the `build` script for Chrome and outputs in `web-ext-artifacts/chrome`
 - `build:firefox`: Runs the `build` script for Firefox and outputs in `web-ext-artifacts/firefox`
+- `build:both`: Runs the `build:chrome` and `build:firefox` scripts consecutively.
 - `lint`: Runs `eslint` on `src` to check for any linting issues
 - `lint:fix`: Trys to fix any linting issues automatically. This can fail and return a list of linting issues.
 - `watch`: Runs `webpack --watch` on the source directory
@@ -48,7 +49,7 @@ The following npm scripts are available to make your life easier. You can run th
 In general:
 
 - When developing the app you should run `pnpm run watch` to have hot reloads and load the extension from `dist`.
-- When building, you should run either `pnpm run build:chrome` or `pnpm run build:firefox` depending on whether you want the Chrome or Firefox icons.
+- When building, you should run either `pnpm run build:chrome` or `pnpm run build:firefox` depending on whether you want the Chrome or Firefox icons or run `pnpm run build:both` for both
 - If you want to run some `web-ext` command, you should use `pnpm run webext <your command>` instead.
 
 After you've done all your edits, if you'd like to submit a pull request with your changes (always appreciated btw!) please run the `lint` script and fix all (if any) issues that it shows up. This helps ensure a clean and consistent coding style.
