@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "With FUWAMOCO",
+  "version": "0.1.0",
+  "description": "Browse the web, with FUWAMOCO!",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "icons": {
+    "16": "./icons/16.png",
+    "32": "./icons/32.png",
+    "48": "./icons/48.png",
+    "128": "./icons/128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "With FUWAMOCO Settings"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "./content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/images/With-FWMC.webp"
+      ],
+      "matches": [
+        "*://*/*"
+      ]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "with-fwmc@snoyw.net"
+    }
+  }
+}

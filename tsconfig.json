@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "jsx": "react",
+    "lib": ["ES2015", "DOM"],
+    "moduleDetection": "force",
+    "module": "es6",
+    "moduleResolution": "bundler",
+    "allowJs": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "outDir": "./dist/",
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

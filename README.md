@@ -1,78 +1,52 @@
-# FUWAMOCO Everywhere
+# With FUWAMOCO
 
-This Chrome extension adds an image to the top of YouTube video thumbnails.
+Browse the web, with FUWAMOCO!
 
-This idea came from this tweet: https://x.com/paramedsz/status/1951152462393450518
+<p align="center">
+  <img src="./docs/images/Browse-With-FWMC.png" alt="With FWMC Image" width="320"/>
+</p>
 
 ## Installation
 
-### From GitHub Releases (easier)
+> This is currently only via "development"-routes. An official and easier install method will be released soon.
 
-1. Go to the [Releases page](https://github.com/arashari/chrome-ext-with-fwmc/releases).
-2. Download the `chrome-ext-with-fwmc.zip` file from the latest release.
-3. Unzip the file.
+### For Chrome:
+
+1. Go to the [latest release](https://github.com/snowydqys/With-FUWAMOCO/releases/latest) and download the latest `Chrome-with_fuwamoco-X.X.X.zip`
+2. Unzip this archive anywhere.
 4. Open Chrome and navigate to `chrome://extensions`.
 5. Enable "Developer mode" in the top right corner.
 6. Click "Load unpacked" and select the unzipped directory.
 
-### From source (for developers)
+### For Firefox:
 
-1. Open Chrome and navigate to `chrome://extensions`.
-2. Enable "Developer mode" in the top right corner.
-3. Click "Load unpacked" and select the directory where you cloned this repository.
+1. Go to the [latest release](https://github.com/snowydqys/With-FUWAMOCO/releases/latest) and download the latest `Firefox-with_fuwamoco-X.X.X.zip`.
+2. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
+3. Click "Load Temporary Add-on".
+4. Navigate to the ZIP and select it to load it.
+5. The extension will be loaded temporarily, and will be **unloaded when you close the browser**.
 
-## ⚠️ WARNING: Extreme Bau Bau Option
+## Configure
 
-There's a commented line in `content.js` (line 8) that's currently sleeping peacefully:
+By default, this will show up in the bottom right corner, and in YouTube thumbnails. You can configure this in the popup menu for the extension!
 
-```javascript
-// 'div#container > div.html5-video-player > div.html5-video-container', // NOTE: too powerful for now, we are not ready yet
-```
+To view more information on what you can configure and what it does, please check out [the different modes and settings](./docs/Supported-Modes.md).
 
-**DO NOT UNCOMMENT THIS LINE** unless you want FUWAMOCO to literally take over your entire YouTube experience! 🐕‍🦺💥
+## Credits
 
-If you uncomment it, here's what will happen:
+Thanks to the following projects for making my life easier!
 
-- FUWAMOCO will appear on **playing video**
-- They'll show up during **ads**
+- [MrBeastify-Youtube by MagicJinn](https://github.com/MagicJinn/MrBeastify-Youtube) - Method for applying overlays to images.
+- [With FWMC Chrome Ext by arashari](https://github.com/arashari/chrome-ext-with-fwmc) - Original extension; inspiration for taking this to the next level.
 
-<table>
-    <tr>
-        <td>ads</td>
-        <td>playing video</td>
-    </tr>
-    <tr>
-        <td width="50%">
-            <img src="images/ads.png" width="100%" alt="ads">
-        </td>
-        <td width="50%">
-            <img src="images/playing-video.png" width="100%" alt="playing video">
-        </td>
-    </tr>
-</table>
+And of course, check out the cute demon guard dogs featured in this! [FUWAMOCO ch.](https://youtube.com/@FUWAMOCOch)
 
-We've marked it as "too powerful for now" because frankly, we're not ready for that level of chaos. The world might not be ready either. Use at your own risk! 🚨
+## For Developers
 
-_"With great power comes great responsibility... and in this case, great amounts of FUWAMOCO everywhere."_
+If you are a developer and want to view the source code or build the extension yourself, you should check out [the developer docs](./docs/For-Developers.md) for information on how the project works.
 
-## Customization
+## License
 
-### Adjusting Overlay Size
+The extension's code is available under [GPL-3.0](LICENSE).
 
-You can customize the size of the FUWAMOCO overlay by editing the `content.js` file:
-
-```javascript
-img.style.maxWidth = "55%"; // Adjust this value (e.g., '40%', '70%')
-img.style.maxHeight = "41%"; // Adjust this value (e.g., '35%', '65%')
-```
-
-**How to modify:**
-
-1. Open `content.js` in a text editor
-2. Find lines 13-14 where the overlay dimensions are set
-3. Change the percentage values to your preference
-4. Save the file
-5. Go to `chrome://extensions` and click the refresh button on the extension
-6. Reload any YouTube pages to see the changes
-
-Test different values to find your preferred balance between visibility and thumbnail coverage!
+All other assets belong to their respective creators.
