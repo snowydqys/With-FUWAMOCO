@@ -7,10 +7,9 @@ Below are the supported sites/modes you can enable, and what settings are availa
 - Supported Modes and Settings
   - [Global FWMC (bottom right)](#global-fwmc-bottom-right)
   - [YouTube Thumbnails](#youtube-thumbnails)
-  - [Twitter Media](#twitter-media)
+  - [Twitter/X Media](#twitterx-media)
   - [HTML Elements](#html-elements)
 - [Suggestions?](#suggestions)
-
 
 ## Global FWMC (bottom right)
 
@@ -39,13 +38,11 @@ YouTube Video | YouTube Shorts | YouTube Notification
 | Image Width | The width of the image. Must be a [valid CSS max-width](https://developer.mozilla.org/en-US/docs/Web/CSS/max-width). | `55%` |
 | Image Height | The height of the image. Must be a [valid CSS max-height](https://developer.mozilla.org/en-US/docs/Web/CSS/max-height). | `41%`
 
-## Twitter Media
-
-> Work-in-progress; expect buggy behavior!
+## Twitter/X Media
 
 Video | Image
 :-:|:-:
-<img src="./images/twitter-video.png" alt="Twitter Video"> | <img src="./images/twitter-image.png" alt="Twitter Image">
+<img src="./images/twitter-video.png" alt="Twitter/X Video"> | <img src="./images/twitter-image.png" alt="Twitter/X Image">
 
 | Setting | Description | Default |
 | --- | --- | --- |
