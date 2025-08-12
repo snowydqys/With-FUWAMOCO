@@ -46,6 +46,7 @@ export function addHTMLElements(settings: Partial<Settings["htmlElements"]>) {
         width: settings.width,
         height: settings.height,
         childToInsertAfter: pictureContainer || element,
+        zIndex: "0",
       });
     }
     catch (error) {

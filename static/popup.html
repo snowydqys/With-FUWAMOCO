@@ -88,122 +88,143 @@
     .hide {
       display: none;
     }
+
+    textarea {
+      width: 100%;
+      height: 80px;
+      padding: 8px;
+    }
   </style>
 </head>
 
 <body>
   <h2>With FUWAMOCO</h3>
 
-    <div class="separator"></div>
+  <div class="separator"></div>
 
-    <h3>
-      Global FWMC (bottom right)
-    </h3>
+  <h3>
+    Global FWMC (bottom right)
+  </h3>
 
-    <ul>
-      <li>
-        <input type="checkbox" name="global_fwmc_toggle" id="global_fwmc_toggle">
-        Enabled
-        </input>
-      </li>
-      <li class="flex">
-        Image Width
-        <input type="text" name="global_fwmc_width" id="global_fwmc_width" placeholder="Size" value="20vw">
-      </li>
-      <li class="flex">
-        Image Height
-        <input type="text" name="global_fwmc_height" id="global_fwmc_height" placeholder="Size" value="20vw">
-      </li>
-      <li class="flex">
-        Image Opacity (0.0 - 1.0)
-        <input type="text" name="global_fwmc_opacity" id="global_fwmc_opacity" placeholder="Opacity" value="1">
-      </li>
-    </ul>
+  <ul>
+    <li>
+      <input type="checkbox" name="global_fwmc_toggle" id="global_fwmc_toggle">
+      Enabled
+      </input>
+    </li>
+    <li class="flex">
+      Image Width
+      <input type="text" name="global_fwmc_width" id="global_fwmc_width" placeholder="Size" value="20vw">
+    </li>
+    <li class="flex">
+      Image Height
+      <input type="text" name="global_fwmc_height" id="global_fwmc_height" placeholder="Size" value="20vw">
+    </li>
+    <li class="flex">
+      Image Opacity (0.0 - 1.0)
+      <input type="text" name="global_fwmc_opacity" id="global_fwmc_opacity" placeholder="Opacity" value="1">
+    </li>
+  </ul>
 
-    <div class="separator"></div>
+  <div class="separator"></div>
 
-    <h3>
-      YouTube Thumbnails
-    </h3>
+  <h3>
+    YouTube Thumbnails
+  </h3>
 
-    <ul>
-      <li>
-        <input type="checkbox" name="youtube_thumbnails_toggle" id="youtube_thumbnails_toggle">
-        Enabled
-        </input>
-      </li>
-      <li class="flex">
-        Image Width
-        <input type="text" name="youtube_thumbnails_width" id="youtube_thumbnails_width" placeholder="Size" value="55%">
-      </li>
-      <li class="flex">
-        Image Height
-        <input type="text" name="youtube_thumbnails_height" id="youtube_thumbnails_height" placeholder="Size"
-          value="41%">
-      </li>
-    </ul>
+  <ul>
+    <li>
+      <input type="checkbox" name="youtube_thumbnails_toggle" id="youtube_thumbnails_toggle">
+      Enabled
+      </input>
+    </li>
+    <li class="flex">
+      Image Width
+      <input type="text" name="youtube_thumbnails_width" id="youtube_thumbnails_width" placeholder="Size" value="55%">
+    </li>
+    <li class="flex">
+      Image Height
+      <input type="text" name="youtube_thumbnails_height" id="youtube_thumbnails_height" placeholder="Size"
+        value="41%">
+    </li>
+  </ul>
 
-    <div class="separator"></div>
+  <div class="separator"></div>
 
-    <h3>
-      X (formerly Twitter)
-    </h3>
+  <h3>
+    X (formerly Twitter)
+  </h3>
 
-    <ul>
-      <li>
-        <input type="checkbox" name="twitter_toggle" id="twitter_toggle">
-        Enabled
-        </input>
-      </li>
-      <li class="flex">
-        Image Width
-        <input type="text" name="twitter_width" id="twitter_width" placeholder="Size" value="55%">
-      </li>
-      <li class="flex">
-        Image Height
-        <input type="text" name="twitter_height" id="twitter_height" placeholder="Size" value="41%">
-      </li>
-    </ul>
+  <ul>
+    <li>
+      <input type="checkbox" name="twitter_toggle" id="twitter_toggle">
+      Enabled
+      </input>
+    </li>
+    <li class="flex">
+      Image Width
+      <input type="text" name="twitter_width" id="twitter_width" placeholder="Size" value="55%">
+    </li>
+    <li class="flex">
+      Image Height
+      <input type="text" name="twitter_height" id="twitter_height" placeholder="Size" value="41%">
+    </li>
+  </ul>
 
-    <div class="separator"></div>
+  <div class="separator"></div>
 
-    <h3>
-      HTML Elements
-    </h3>
+  <h3>
+    HTML Elements
+  </h3>
 
-    <p class="warning">
-      Applies to all HTML elements (images, videos, etc.) on every site.
+  <p class="warning">
+    Applies to all HTML image elements on every site.
+  </p>
+
+  <ul>
+    <li>
+      <input type="checkbox" name="html_elements_toggle" id="html_elements_toggle">
+      Enabled
+      </input>
+    </li>
+    <li class="flex">
+      Image Width
+      <input type="text" name="html_elements_width" id="html_elements_width" placeholder="Size" value="55%">
+    </li>
+    <li class="flex">
+      Image Height
+      <input type="text" name="html_elements_height" id="html_elements_height" placeholder="Size" value="41%">
+    </li>
+
+    <!-- TODO: maybe make this also apply to Global FWMC? -->
+
+    <li class="flex">
+      Blocked Domains (one per line)
+      <textarea name="blocked_domains" id="blocked_domains" placeholder="Domains"></textarea>
+    </li>
+
+    <li class="flex">
+      Treat Blocked Domains as
+      <select name="blocked_domains_mode" id="blocked_domains_mode">
+        <option value="blacklist">Blacklist</option>
+        <option value="whitelist">Whitelist</option>
+      </select>
+    </li>
+  </ul>
+
+  <div class="footer-space"></div>
+
+  <footer>
+    <p id="settings_status" class="hide success">
+      Settings saved successfully!
     </p>
+    <button id="save_settings">Save Settings</button>
+    <a href="https://github.com/snowydqys/With-FUWAMOCO" target="_blank">
+      Source Code
+    </a>
+  </footer>
 
-    <ul>
-      <li>
-        <input type="checkbox" name="html_elements_toggle" id="html_elements_toggle">
-        Enabled
-        </input>
-      </li>
-      <li class="flex">
-        Image Width
-        <input type="text" name="html_elements_width" id="html_elements_width" placeholder="Size" value="55%">
-      </li>
-      <li class="flex">
-        Image Height
-        <input type="text" name="html_elements_height" id="html_elements_height" placeholder="Size" value="41%">
-      </li>
-    </ul>
-
-    <div class="footer-space"></div>
-
-    <footer>
-      <p id="settings_status" class="hide success">
-        Settings saved successfully!
-      </p>
-      <button id="save_settings">Save Settings</button>
-      <a href="https://github.com/snowydqys/With-FUWAMOCO" target="_blank">
-        Source Code
-      </a>
-    </footer>
-
-    <script src="popup.js"></script>
+  <script src="popup.js"></script>
 </body>
 
 </html>

@@ -13,6 +13,20 @@ let currentSettings: Settings;
  */
 let currentFunction: (() => void) | undefined;
 
+function checkIfBlockedDomain(url: string): boolean {
+  if (currentSettings.blockedDomains.list.length < 1) {
+    return false; // No blocked domains set
+  }
+
+  const isBlocked = currentSettings.blockedDomains.list.some((blockedDomain: string) => {
+    return url.includes(blockedDomain);
+  });
+
+  // If mode is whitelist, return true if NOT in the list (blocked)
+  // If mode is blacklist, return true if in the list (blocked)
+  return currentSettings.blockedDomains.mode === "whitelist" ? !isBlocked : isBlocked;
+}
+
 async function main() {
   try {
     if (document.contentType !== "text/html") {
@@ -51,11 +65,16 @@ async function main() {
         break;
 
       default:
+        // by putting this in the default case, we ensure it only runs on non-specific sites
+        // this is because we dont want this to conflict with other specific site handlers.
+        // if the user wants it on those sites, they should enable the specific handlers instead.
         if (currentSettings.htmlElements.enabled) {
-          // by putting this in the default case, we ensure it only runs on non-specific sites
-          // this is because we dont want this to conflict with other specific site handlers.
-          // if the user wants it on those sites, they should enable the specific handlers instead.
-          console.log("[With FWMC] HTML elements enabled, adding to all images and videos");
+          if (checkIfBlockedDomain(window.location.hostname)) {
+            console.debug("[With FWMC] HTML elements are blocked on this domain, skipping");
+            break;
+          }
+
+          console.log("[With FWMC] HTML elements enabled, adding to all images");
           currentFunction = createFunctionWithSettings<"htmlElements">(addHTMLElements, currentSettings.htmlElements);
         }
         break;

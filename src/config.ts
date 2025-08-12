@@ -4,6 +4,11 @@ import { runtime } from "./helpers";
  * Configuration for the With-FUWAMOCO extension.
  */
 const settings = {
+  /** Currently only applies to htmlElements */
+  blockedDomains: {
+    mode: "blacklist" as "whitelist" | "blacklist", // can be "whitelist" or "blacklist"
+    list: [] as string[],
+  },
   global: {
     enabled: true,
     width: "auto",

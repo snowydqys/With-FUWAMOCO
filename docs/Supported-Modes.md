@@ -52,7 +52,7 @@ Video | Image
 
 ## HTML Elements
 
-> **EXTREME BAU BAU MODE!** Adds FUWAMOCO to every image and video! *BAU at your own risk!*
+> **EXTREME BAU BAU MODE!** Adds FUWAMOCO to every image on the page! *BAU at your own risk!*
 
 > Work-in-progress; expect buggy behavior! Also may cause a lot of lag.
 

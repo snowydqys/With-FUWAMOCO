@@ -7,6 +7,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     settings = await loadSettings();
 
+    const blockedDomainsTextarea = document.getElementById("blocked_domains") as HTMLTextAreaElement | null;
+    if (blockedDomainsTextarea) {
+      blockedDomainsTextarea.value = settings.blockedDomains.list.join("\n");
+    }
+    const blockedDomainsModeSelect = document.getElementById("blocked_domains_mode") as HTMLSelectElement | null;
+    if (blockedDomainsModeSelect) {
+      blockedDomainsModeSelect.value = settings.blockedDomains.mode;
+    }
+
     const globalToggle = document.getElementById("global_fwmc_toggle") as HTMLInputElement | null;
     if (globalToggle)
       globalToggle.checked = settings.global.enabled;
@@ -87,6 +96,32 @@ function updateSettingsStatus(message?: string, success: boolean = true) {
 function setupEventListeners() {
   const saveButton = document.getElementById("save_settings") as HTMLButtonElement | null;
   saveButton?.addEventListener("click", async () => {
+    const NewBlockedSettings: Partial<Settings["blockedDomains"]> = {};
+
+    const blockedDomainsTextarea = document.getElementById("blocked_domains") as HTMLTextAreaElement | null;
+    if (blockedDomainsTextarea) {
+      const blockedDomains = blockedDomainsTextarea.value.split("\n").map(domain => domain.trim()).filter(domain => domain);
+      console.log("[With FWMC] Blocked domains:", blockedDomains);
+      if (blockedDomains.length > 0) {
+        NewBlockedSettings.list = blockedDomains;
+      }
+      else {
+        NewBlockedSettings.list = [];
+      }
+    }
+    const blockedDomainsModeSelect = document.getElementById("blocked_domains_mode") as HTMLSelectElement | null;
+    if (blockedDomainsModeSelect) {
+      switch (blockedDomainsModeSelect.value) {
+        case "whitelist":
+        case "blacklist":
+          NewBlockedSettings.mode = blockedDomainsModeSelect.value;
+          break;
+        default:
+          updateSettingsStatus("Invalid mode for blocked domains.", false);
+          return;
+      }
+    }
+
     const NewGlobalSettings: Partial<Settings["global"]> = {};
 
     const global_fwmc_toggle = document.getElementById("global_fwmc_toggle") as HTMLInputElement | null;
@@ -208,6 +243,7 @@ function setupEventListeners() {
       }
     }
 
+    settings.blockedDomains = { ...settings.blockedDomains, ...NewBlockedSettings };
     settings.global = { ...settings.global, ...NewGlobalSettings };
     settings.youtube = { ...settings.youtube, ...NewYouTubeSettings };
     settings.twitter = { ...settings.twitter, ...NewTwitterSettings };
