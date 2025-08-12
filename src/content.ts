@@ -2,7 +2,7 @@ import type { Settings } from "./config";
 import { addGlobalImage } from "./appliers/global";
 import { addHTMLElements } from "./appliers/htmlElements";
 import { addTwitter } from "./appliers/twitter";
-import { addYouTubeThumbnails } from "./appliers/youtube";
+import { addYouTubeMusicThumbnails, addYouTubeThumbnails } from "./appliers/youtube";
 import { loadSettings } from "./config";
 import { createFunctionWithSettings } from "./helpers";
 
@@ -30,10 +30,15 @@ async function main() {
       case "youtube.com":
       case "www.youtube.com":
       case "m.youtube.com":
-      case "music.youtube.com":
         if (currentSettings.youtube.enabled) {
           console.log("[With FWMC] YouTube thumbnails enabled, adding to all thumbnails");
           currentFunction = createFunctionWithSettings<"youtube">(addYouTubeThumbnails, currentSettings.youtube);
+        }
+        break;
+      case "music.youtube.com":
+        if (currentSettings.youtube.enabled) {
+          console.log("[With FWMC] YouTube thumbnails enabled, adding to all thumbnails");
+          currentFunction = createFunctionWithSettings<"youtube">(addYouTubeMusicThumbnails, currentSettings.youtube);
         }
         break;
 
@@ -59,7 +64,7 @@ async function main() {
       currentFunction();
     }
     else {
-      console.warn("[With FWMC] No applicable function found for the current page");
+      console.debug("[With FWMC] No applicable function found for the current page");
     }
   }
   catch (error) {

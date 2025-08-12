@@ -48,3 +48,46 @@ export function addYouTubeThumbnails(settings: Partial<Settings["youtube"]>) {
     }
   });
 }
+
+/**
+ * Adds the With FUWAMOCO image to YouTube Music thumbnails.
+ */
+export function addYouTubeMusicThumbnails(settings: Partial<Settings["youtube"]>) {
+  const thumbnailImages = [
+    ...Array.from(document.querySelectorAll("ytmusic-thumbnail-renderer > yt-img-shadow > img")), // general thumbnails
+    ...Array.from(document.querySelectorAll("ytmusic-player-bar img.ytmusic-player-bar")), // player bar thumbnail
+    ...Array.from(document.querySelectorAll("div.ytmusic-player-queue-item > yt-img-shadow > img")), // queue thumbnails
+  ];
+
+  thumbnailImages.forEach((thumbnail) => {
+    try {
+      if (!(thumbnail instanceof HTMLElement)) {
+        console.warn("[With FWMC] Thumbnail is not an HTMLElement, skipping:", thumbnail);
+        return;
+      }
+
+      const container = thumbnail.closest("ytmusic-thumbnail-renderer") || thumbnail.parentElement;
+
+      if (!container || !(container instanceof HTMLElement) || container.querySelector(".fwmc-youtube-overlay")) {
+        // container is not found or already has an overlay image
+        return;
+      }
+
+      const computedStyle = window.getComputedStyle(container);
+      if (computedStyle.position === "static") {
+        container.style.position = "relative";
+      }
+
+      appendImageWithStyles(container, {
+        className: "fwmc-youtube-overlay",
+        width: settings.width,
+        height: settings.height,
+        childToInsertAfter: thumbnail,
+        zIndex: "0", // prevents video controls from being behind the image
+      });
+    }
+    catch (error) {
+      console.error("[With FWMC] Error adding YouTube Music thumbnail:", error);
+    }
+  });
+}
