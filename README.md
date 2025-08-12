@@ -3,7 +3,7 @@
 Browse the web, with FUWAMOCO!
 
 <p align="center">
-  <img src="./docs/images/Browse-With-FWMC.png" alt="With FWMC Image" width="320"/>
+  <img src="./518x518.png" alt="With FWMC Image" width="200"/>
 </p>
 
 ## Installation

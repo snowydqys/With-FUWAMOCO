@@ -1,7 +1,7 @@
 const path = require("node:path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-const targetBrowser = process.env.TARGET_BROWSER || "firefox";
+// const targetBrowser = process.env.TARGET_BROWSER || "firefox";
 
 module.exports = {
   mode: "production",
@@ -33,15 +33,6 @@ module.exports = {
           from: "static",
           to: ".",
         },
-        targetBrowser === "firefox"
-          ? {
-              from: "icons/firefox",
-              to: "icons",
-            }
-          : {
-              from: "icons/chrome",
-              to: "icons",
-            },
       ],
     }),
   ],
