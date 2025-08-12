@@ -6,8 +6,8 @@ import { runtime } from "./helpers";
 const settings = {
   global: {
     enabled: true,
-    width: "10vw",
-    height: "auto",
+    width: "auto",
+    height: "10vh",
     opacity: 1,
   },
   youtube: {

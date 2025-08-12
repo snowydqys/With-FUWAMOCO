@@ -15,6 +15,7 @@ export function addYouTubeThumbnails(settings: Partial<Settings["youtube"]>) {
     ...Array.from(document.querySelectorAll(".yt-core-image.shortsLockupViewModelHostThumbnail")), // short video
     ...Array.from(document.querySelectorAll("yt-thumbnail-view-model > div.yt-thumbnail-view-model__image > img.yt-core-image")), // general video
     ...Array.from(document.querySelectorAll("yt-image-banner-view-model > img.yt-core-image")), // channel banner images
+    ...Array.from(document.querySelectorAll("ytm-thumbnail-cover img.yt-core-image")), // youtube mobile thumbnail
   ];
 
   thumbnailImages.forEach((thumbnail) => {
