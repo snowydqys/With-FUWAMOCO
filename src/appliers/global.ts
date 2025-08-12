@@ -27,7 +27,7 @@ export function addGlobalImage(settings: Partial<Settings["global"]>) {
       height: settings.height,
       opacity: settings.opacity,
       position: "fixed",
-      zIndex: "0",
+      zIndex: "9999",
     });
   }
   catch (error) {
