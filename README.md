@@ -8,23 +8,23 @@ Browse the web, with FUWAMOCO!
 
 ## Installation
 
-> This is currently only via "development"-routes. An official and easier install method will be released soon.
+### For Firefox:
+
+[![Get the Add-On from the AMO](https://blog.mozilla.org/addons/files/2015/11/get-the-addon.png)](https://addons.mozilla.org/en-US/firefox/addon/browse-with-fuwamoco)
+
+1. Go the [add-on page](https://addons.mozilla.org/en-US/firefox/addon/browse-with-fuwamoco) for this extension.
+2. Click "Add to Firefox"
+3. Click "Add"
 
 ### For Chrome:
 
+> This is currently only via a "development" route. An easier install method will be released soon.
+
 1. Go to the [latest release](https://github.com/snowydqys/With-FUWAMOCO/releases/latest) and download the latest `Chrome-with_fuwamoco-X.X.X.zip`
 2. Unzip this archive anywhere.
-4. Open Chrome and navigate to `chrome://extensions`.
-5. Enable "Developer mode" in the top right corner.
-6. Click "Load unpacked" and select the unzipped directory.
-
-### For Firefox:
-
-1. Go to the [latest release](https://github.com/snowydqys/With-FUWAMOCO/releases/latest) and download the latest `Firefox-with_fuwamoco-X.X.X.zip`.
-2. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
-3. Click "Load Temporary Add-on".
-4. Navigate to the ZIP and select it to load it.
-5. The extension will be loaded temporarily, and will be **unloaded when you close the browser**.
+3. Open Chrome and navigate to `chrome://extensions`.
+4. Enable "Developer mode" in the top right corner.
+5. Click "Load unpacked" and select the unzipped directory.
 
 ## Configure
 
