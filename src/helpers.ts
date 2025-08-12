@@ -21,6 +21,7 @@ export function appendImageWithStyles(container: HTMLElement, options: ImageWith
   withFWMCImage.style.maxWidth = options.width || "auto";
   withFWMCImage.style.maxHeight = options.height || "auto";
   withFWMCImage.style.zIndex = options.zIndex || "100";
+  withFWMCImage.style.opacity = options.opacity ? options.opacity.toString() : "1";
   withFWMCImage.style.pointerEvents = "none";
   withFWMCImage.style.margin = "auto 0 0 auto";
   withFWMCImage.style.backgroundColor = "transparent";
@@ -43,6 +44,8 @@ interface ImageWithStylesOptions {
   width?: string
   /** The max-height of the image. Defaults to "auto". */
   height?: string
+  /** The opacity of the image. Defaults to "1". */
+  opacity?: number
   /** The child element to insert the image after. If not provided, the image will be appended to the container. */
   childToInsertAfter?: HTMLElement
   /** The position of the image. Defaults to "absolute". */

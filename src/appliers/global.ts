@@ -25,6 +25,7 @@ export function addGlobalImage(settings: Partial<Settings["global"]>) {
       className: "fwmc-global-image",
       width: settings.width,
       height: settings.height,
+      opacity: settings.opacity,
       position: "fixed",
       zIndex: "0",
     });
