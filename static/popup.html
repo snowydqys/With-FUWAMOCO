@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
-
+<html class="min-h-[unset] w-full h-full">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>With FUWAMOCO</title>
   <!--
     I am using tailwindcss for styling now.
     Since this html is in static/ folder, I need to reference the resulting css file.
@@ -12,8 +13,7 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 
-<body class="relative font-sans px-4 bg-base-100 text-base-content w-96 h-[32rem] flex flex-col">
-  <!-- Tab Content Sections -->
+<body class="relative mx-auto font-sans px-4 bg-base-100 text-base-content w-96 h-[32rem] sm:w-[40rem] sm:h-full flex flex-col">
   <div class="tab-custom-content" data-tab="global">
     <fieldset class="fieldset">
       <legend class="fieldset-legend">
@@ -196,5 +196,4 @@
 
   <script src="popup.js"></script>
 </body>
-
 </html>
