@@ -1,9 +1,36 @@
 import type { Settings } from "./config";
 import { loadSettings, saveSettings } from "./config";
+import "./tailwind.css";
 
 let settings: Settings;
 
 document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const tabInputs = document.querySelectorAll("input[name=\"current_tab\"]") as NodeListOf<HTMLInputElement>;
+    tabInputs.forEach((input) => {
+      input.addEventListener("change", () => {
+        console.debug("[With FWMC] Tab changed:", input.value);
+        const selectedTab = document.querySelector(`.tab-custom-content[data-tab="${input.value}"]`) as HTMLDivElement | null;
+        if (selectedTab) {
+          document.querySelectorAll(".tab-custom-content").forEach((tab) => {
+            console.debug("[With FWMC] Hiding tab:", (tab as HTMLDivElement).dataset.tab);
+            (tab as HTMLDivElement).classList.add("hidden");
+          });
+          selectedTab.classList.remove("hidden");
+        }
+      });
+    });
+
+    const checkedTab = document.querySelector("input[name=\"current_tab\"]:checked") as HTMLInputElement | null;
+    if (checkedTab) {
+      const event = new Event("change");
+      checkedTab.dispatchEvent(event);
+    }
+  }
+  catch (error) {
+    console.error("[With FWMC] Error initializing popup script:", error);
+  }
+
   try {
     settings = await loadSettings();
 
@@ -79,16 +106,26 @@ document.addEventListener("DOMContentLoaded", async () => {
  * @param success Whether the operation was successful. If true, the message will be styled as ".success"; otherwise, it will be styled as a ".warning".
  */
 function updateSettingsStatus(message?: string, success: boolean = true) {
-  const statusElement = document.getElementById("settings_status") as HTMLParagraphElement | null;
-  if (statusElement) {
-    statusElement.textContent = message || (success ? "Settings saved successfully!" : "Failed to save settings.");
-    statusElement.className = success ? "success" : "warning";
-    statusElement.classList.remove("hide");
-
+  const saveButton = document.getElementById("save_settings") as HTMLButtonElement | null;
+  if (saveButton) {
     if (success) {
-      setTimeout(() => {
-        statusElement.classList.add("hide");
-      }, 3000);
+      saveButton.classList.remove("btn-error", "btn-primary");
+      saveButton.classList.add("btn-success");
+      saveButton.textContent = message || "Settings saved!";
+
+      const resetButtonState = () => {
+        saveButton.classList.remove("btn-success");
+        saveButton.classList.add("btn-accent");
+        saveButton.textContent = "Save Settings";
+        saveButton.removeEventListener("mouseleave", resetButtonState);
+      };
+
+      saveButton.addEventListener("mouseleave", resetButtonState);
+    }
+    else {
+      saveButton.classList.remove("btn-success", "btn-accent");
+      saveButton.classList.add("btn-error");
+      saveButton.textContent = message || "Error saving settings!";
     }
   }
 }
@@ -250,6 +287,6 @@ function setupEventListeners() {
     settings.htmlElements = { ...settings.htmlElements, ...NewHTMLElementsSettings };
 
     await saveSettings(settings);
-    updateSettingsStatus("Settings saved successfully!");
+    updateSettingsStatus("Settings saved!");
   });
 }

@@ -1,0 +1,54 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: "fluffy-and-fuzzy";
+}
+@plugin "daisyui/theme" {
+  name: "fluffy-and-fuzzy";
+  default: true; 
+  color-scheme: light;
+
+  --color-base-100: rgb(249, 248, 251);
+  --color-base-200: rgb(225, 223, 230);
+  --color-base-300: rgb(200, 196, 208);
+  --color-base-content: rgb(52, 51, 60);
+  --color-primary: rgb(107, 137, 242);
+  --color-primary-content: rgb(250, 249, 251);
+  --color-secondary: rgb(212, 172, 235);
+  --color-secondary-content: rgb(251, 250, 252);
+  --color-accent: rgb(123, 107, 187);
+  --color-accent-content: rgb(240, 237, 246);
+  --color-neutral: rgb(125, 122, 133);
+  --color-neutral-content: rgb(250, 249, 251);
+  --color-info: rgb(192, 199, 240);
+  --color-info-content: rgb(250, 250, 251);
+  --color-success: rgb(159, 219, 142);
+  --color-success-content: rgb(250, 251, 249);
+  --color-warning: rgb(235, 203, 151);
+  --color-warning-content: rgb(60, 54, 45);
+  --color-error: rgb(197, 102, 104);
+  --color-error-content: rgb(251, 249, 249);
+
+  /* border radius */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  
+  /* base sizes */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  /* border size */
+  --border: 1px;
+
+  /* effects */
+  --depth: 1;
+  --noise: 0;
+}
+
+@utility tab-custom-content {
+  @apply w-full mx-auto bg-base-100 grow overflow-y-auto px-2 py-2;
+}
+
+.label {
+  @apply label text-base-content;
+}

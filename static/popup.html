@@ -3,226 +3,196 @@
 
 <head>
   <meta charset="UTF-8">
-  <style>
-    body {
-      width: 300px;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      background-color: #fdf9f1;
-      color: #2c2a31;
-      text-align: center;
-    }
-
-    button {
-      width: auto;
-      padding: 10px;
-      color: #2c2a31;
-      border: transparent;
-      background: linear-gradient(135deg, #7493ca, #fecde3);
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-position 0.6s ease;
-      animation: button-animation 2s linear infinite;
-    }
-
-    div.separator {
-      height: 1px;
-      background-color: #2c2a31;
-      margin: 20px 0;
-    }
-
-    ul {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      list-style-type: none;
-      padding: 0;
-      text-align: start;
-    }
-
-    ul>li {
-      margin: 4px 0;
-    }
-
-    ul>li.flex {
-      display: flex;
-      flex-direction: column;
-      align-items: start;
-      justify-content: center;
-      width: 100%;
-    }
-
-    p.warning {
-      color: #ff0000;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    footer {
-      position: fixed;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      align-items: center;
-      justify-content: center;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: #fdf9f1;
-      padding: 10px 4px;
-      text-align: center;
-      border-top: 1px solid #2c2a31;
-    }
-
-    .footer-space {
-      height: 120px;
-    }
-
-    p.success {
-      color: #00BA00;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    .hide {
-      display: none;
-    }
-
-    textarea {
-      width: 100%;
-      height: 80px;
-      padding: 8px;
-    }
-  </style>
+  <!--
+    I am using tailwindcss for styling now.
+    Since this html is in static/ folder, I need to reference the resulting css file.
+    src/tailwind.css gets compiled to dist/popup.css so we link that here.
+    This gets copied to dist/popup.html as well during the build process.
+  -->
+  <link rel="stylesheet" href="popup.css">
 </head>
 
-<body>
-  <h2>With FUWAMOCO</h3>
+<body class="relative font-sans px-4 bg-base-100 text-base-content w-96 h-[32rem] flex flex-col">
+  <!-- Tab Content Sections -->
+  <div class="tab-custom-content" data-tab="global">
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">
+        Global FWMC (bottom right)
+        <a href="https://github.com/snowydqys/With-FUWAMOCO/blob/main/docs/Supported-Modes.md#global-fwmc-bottom-right" target="_blank">
+          <button class="btn btn-xs btn-ghost btn-accent p-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="size-4"><path fill="currentColor" d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+          </button>
+        </a>
+      </legend>
 
-  <div class="separator"></div>
+      <label class="label">
+        <input type="checkbox" name="global_fwmc_toggle" id="global_fwmc_toggle" class="checkbox checkbox-sm bg-neutral checked:checkbox-accent" />
+        Enabled
+      </label>
+      <label class="label">Image Width</label>
+      <input type="text" class="input input-accent w-full" name="global_fwmc_width" id="global_fwmc_width" placeholder="CSS Width" value="20vw">
+      <label class="label">Image Height</label>
+      <input type="text" class="input input-accent w-full" name="global_fwmc_height" id="global_fwmc_height" placeholder="CSS Height" value="20vh">
+      <label class="label">Image Opacity (0.0 - 1.0)</label>
+      <input type="text" class="input input-accent w-full" name="global_fwmc_opacity" id="global_fwmc_opacity" placeholder="CSS Opacity" value="1">
+    </fieldset>
+  </div>
 
-  <h3>
-    Global FWMC (bottom right)
-  </h3>
+  <div class="hidden tab-custom-content" data-tab="youtube">
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">
+        YouTube Thumbnails
+        <a href="https://github.com/snowydqys/With-FUWAMOCO/blob/main/docs/Supported-Modes.md#youtube-thumbnails" target="_blank">
+          <button class="btn btn-xs btn-ghost btn-accent p-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="size-4"><path fill="currentColor" d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+          </button>
+        </a>
+      </legend>
 
-  <ul>
-    <li>
-      <input type="checkbox" name="global_fwmc_toggle" id="global_fwmc_toggle">
-      Enabled
-      </input>
-    </li>
-    <li class="flex">
-      Image Width
-      <input type="text" name="global_fwmc_width" id="global_fwmc_width" placeholder="Size" value="20vw">
-    </li>
-    <li class="flex">
-      Image Height
-      <input type="text" name="global_fwmc_height" id="global_fwmc_height" placeholder="Size" value="20vw">
-    </li>
-    <li class="flex">
-      Image Opacity (0.0 - 1.0)
-      <input type="text" name="global_fwmc_opacity" id="global_fwmc_opacity" placeholder="Opacity" value="1">
-    </li>
-  </ul>
+      <label class="label">
+        <input type="checkbox" name="youtube_thumbnails_toggle" id="youtube_thumbnails_toggle" class="checkbox checkbox-sm bg-neutral checked:checkbox-accent" />
+        Enabled
+      </label>
+      <label class="label">Image Width</label>
+      <input type="text" class="input input-accent w-full" name="youtube_thumbnails_width" id="youtube_thumbnails_width" placeholder="CSS Width" value="55%">
+      <label class="label">Image Height</label>
+      <input type="text" class="input input-accent w-full" name="youtube_thumbnails_height" id="youtube_thumbnails_height" placeholder="CSS Height" value="41%">
+    </fieldset>
+  </div>
 
-  <div class="separator"></div>
+  <div class="hidden tab-custom-content" data-tab="twitter">
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">
+        X (formerly Twitter) Media
+        <a href="https://github.com/snowydqys/With-FUWAMOCO/blob/main/docs/Supported-Modes.md#twitterx-media" target="_blank">
+          <button class="btn btn-xs btn-ghost btn-accent p-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="size-4"><path fill="currentColor" d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+          </button>
+        </a>
+      </legend>
 
-  <h3>
-    YouTube Thumbnails
-  </h3>
+      <label class="label">
+        <input type="checkbox" name="twitter_toggle" id="twitter_toggle" class="checkbox checkbox-sm bg-neutral checked:checkbox-accent" />
+        Enabled
+      </label>
+      <label class="label">Image Width</label>
+      <input type="text" class="input input-accent w-full" name="twitter_width" id="twitter_width" placeholder="CSS Width" value="55%">
+      <label class="label">Image Height</label>
+      <input type="text" class="input input-accent w-full" name="twitter_height" id="twitter_height" placeholder="CSS Height" value="41%">
+    </fieldset>
+  </div>
 
-  <ul>
-    <li>
-      <input type="checkbox" name="youtube_thumbnails_toggle" id="youtube_thumbnails_toggle">
-      Enabled
-      </input>
-    </li>
-    <li class="flex">
-      Image Width
-      <input type="text" name="youtube_thumbnails_width" id="youtube_thumbnails_width" placeholder="Size" value="55%">
-    </li>
-    <li class="flex">
-      Image Height
-      <input type="text" name="youtube_thumbnails_height" id="youtube_thumbnails_height" placeholder="Size"
-        value="41%">
-    </li>
-  </ul>
+  <div class="hidden tab-custom-content" data-tab="html">
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">
+        HTML Image Elements
+        <a href="https://github.com/snowydqys/With-FUWAMOCO/blob/main/docs/Supported-Modes.md#html-elements" target="_blank">
+          <button class="btn btn-xs btn-ghost btn-accent p-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="size-4"><path fill="currentColor" d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+          </button>
+        </a>
+      </legend>
+      <div role="alert" class="alert alert-warning text-xs">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="h-4 w-4 shrink-0 stroke-current"><path fill="currentColor" d="M13 13h-2V7h2m0 10h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+        <span>Applies to all HTML image elements on every unsupported site.</span>
+      </div>
 
-  <div class="separator"></div>
-
-  <h3>
-    X (formerly Twitter)
-  </h3>
-
-  <ul>
-    <li>
-      <input type="checkbox" name="twitter_toggle" id="twitter_toggle">
-      Enabled
-      </input>
-    </li>
-    <li class="flex">
-      Image Width
-      <input type="text" name="twitter_width" id="twitter_width" placeholder="Size" value="55%">
-    </li>
-    <li class="flex">
-      Image Height
-      <input type="text" name="twitter_height" id="twitter_height" placeholder="Size" value="41%">
-    </li>
-  </ul>
-
-  <div class="separator"></div>
-
-  <h3>
-    HTML Elements
-  </h3>
-
-  <p class="warning">
-    Applies to all HTML image elements on every site.
-  </p>
-
-  <ul>
-    <li>
-      <input type="checkbox" name="html_elements_toggle" id="html_elements_toggle">
-      Enabled
-      </input>
-    </li>
-    <li class="flex">
-      Image Width
-      <input type="text" name="html_elements_width" id="html_elements_width" placeholder="Size" value="55%">
-    </li>
-    <li class="flex">
-      Image Height
-      <input type="text" name="html_elements_height" id="html_elements_height" placeholder="Size" value="41%">
-    </li>
-
-    <!-- TODO: maybe make this also apply to Global FWMC? -->
-
-    <li class="flex">
-      Blocked Domains (one per line)
-      <textarea name="blocked_domains" id="blocked_domains" placeholder="Domains"></textarea>
-    </li>
-
-    <li class="flex">
-      Treat Blocked Domains as
-      <select name="blocked_domains_mode" id="blocked_domains_mode">
+      <label class="label">
+        <input type="checkbox" name="html_elements_toggle" id="html_elements_toggle" class="checkbox checkbox-sm bg-neutral checked:checkbox-accent" />
+        Enabled
+      </label>
+      <label class="label">Image Width</label>
+      <input type="text" class="input input-accent w-full" name="html_elements_width" id="html_elements_width" placeholder="CSS Width" value="55%">
+      <label class="label">Image Height</label>
+      <input type="text" class="input input-accent w-full" name="html_elements_height" id="html_elements_height" placeholder="CSS Height" value="41%">
+      <!-- TODO: maybe make this also apply to Global FWMC? -->
+      <label class="label">Blocked Domains (one per line)</label>
+      <textarea class="textarea textarea-accent w-full h-24" name="blocked_domains" id="blocked_domains" placeholder="Domains"></textarea>
+      <label class="label">Treat blocked domains as</label>
+      <select class="select select-accent w-full" name="blocked_domains_mode" id="blocked_domains_mode">
         <option value="blacklist">Blacklist</option>
         <option value="whitelist">Whitelist</option>
       </select>
-    </li>
-  </ul>
+    </fieldset>
+  </div>
 
-  <div class="footer-space"></div>
+  <div class="hidden tab-custom-content" data-tab="help">
+    <h1 class="text-center font-bold text-lg from-primary to-secondary bg-gradient-to-r text-transparent bg-clip-text">
+      With FUWAMOCO v0.2.1
+    </h1>
+    <h2 class="text-center my-2 italic">
+      Browse the web, with FUWAMOCO!
+    </h2>
+    <section class="my-4 flex flex-col gap-2">
+      <p class="text-center text-sm font-semibold">
+        Support
+      </p>
+      <a href="https://github.com/snowydqys/With-FUWAMOCO/issues" class="btn btn-sm btn-accent text-accent-content join-item w-full">Issue Tracker</a>
+      <div class="join w-full">
+        <a href="https://github.com/snowydqys/With-FUWAMOCO/issues/new?template=bug_report.md" class="btn btn-sm btn-primary text-primary-content join-item w-1/2">Report Issue</a>
+        <a href="https://github.com/snowydqys/With-FUWAMOCO/issues/new?template=feature_request.md" class="btn btn-sm btn-secondary text-secondary-content join-item w-1/2">Suggest Feature</a>
+      </div>
+    </section>
+    <section class="my-4 flex flex-col gap-2">
+      <p class="text-center text-sm font-semibold">
+        Homepages
+      </p>
+      <div class="join w-full">
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/browse-with-fuwamoco" class="btn btn-sm btn-primary text-primary-content join-item w-1/2">Addon Page</a>
+        <a href="https://github.com/snowydqys/With-FUWAMOCO" class="btn btn-sm btn-secondary text-secondary-content join-item w-1/2">GitHub Page</a>
+      </div>
+    </section>
+    <section class="my-4 flex flex-col gap-2">
+      <p class="text-center text-sm font-semibold italic from-primary to-secondary bg-gradient-to-r text-transparent bg-clip-text">
+        BAU BAU!!
+      </p>
+    </section>
+  </div>
 
-  <footer>
-    <p id="settings_status" class="hide success">
-      Settings saved successfully!
-    </p>
-    <button id="save_settings">Save Settings</button>
-    <a href="https://github.com/snowydqys/With-FUWAMOCO" target="_blank">
-      Source Code
-    </a>
-  </footer>
+  <div class="flex flex-col gap-4">
+    <button id="save_settings" class="btn btn-dash btn-accent btn-sm w-full">
+      Save Settings
+    </button>
+    <div class="overflow-x-auto pb-2">
+      <div class="tabs tabs-border min-w-max">
+        <label class="tab h-max has-[input:checked]:text-accent! not-[has-[input:checked]]:text-primary!">
+          <input type="radio" name="current_tab" value="global" checked="checked" />
+          <div class="flex flex-col gap-1 items-center text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="size-4"><path fill="currentColor" d="M19 11h-8v6h8zm-2 4h-4v-2h4zm4-12H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V5c0-1.12-.9-2-2-2m0 16H3V4.97h18z"/></svg>
+            Global
+          </div>
+        </label>
+        <label class="tab h-max has-[input:checked]:text-accent! not-[has-[input:checked]]:text-secondary!">
+          <input type="radio" name="current_tab" value="youtube" />
+          <div class="flex flex-col gap-1 items-center text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="size-4"><path fill="currentColor" d="m10 15l5.19-3L10 9zm11.56-7.83c.13.47.22 1.1.28 1.9c.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83c-.25.9-.83 1.48-1.73 1.73c-.47.13-1.33.22-2.65.28c-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44c-.9-.25-1.48-.83-1.73-1.73c-.13-.47-.22-1.1-.28-1.9c-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83c.25-.9.83-1.48 1.73-1.73c.47-.13 1.33-.22 2.65-.28c1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44c.9.25 1.48.83 1.73 1.73"/></svg>
+            YouTube
+          </div>
+        </label>
+        <label class="tab h-max has-[input:checked]:text-accent! not-[has-[input:checked]]:text-primary!">
+          <input type="radio" name="current_tab" value="twitter" />
+          <div class="flex flex-col gap-1 items-center text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="size-4"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.2 4.2 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.52 8.52 0 0 1-5.33 1.84q-.51 0-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23"/></svg>
+            Twitter/X
+          </div>
+        </label>
+        <label class="tab h-max has-[input:checked]:text-accent! not-[has-[input:checked]]:text-secondary!">
+          <input type="radio" name="current_tab" value="html" />
+          <div class="flex flex-col gap-1 items-center text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="size-4"><path fill="currentColor" d="m8.5 13.5l2.5 3l3.5-4.5l4.5 6H5m16 1V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2"/></svg>
+            HTML Imgs
+          </div>
+        </label>
+        <label class="tab h-max has-[input:checked]:text-accent! not-[has-[input:checked]]:text-primary!">
+          <input type="radio" name="current_tab" value="help" />
+          <div class="flex flex-col gap-1 items-center text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="size-4"><path fill="currentColor" d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+            Help/About
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
 
   <script src="popup.js"></script>
 </body>
