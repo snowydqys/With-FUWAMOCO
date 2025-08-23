@@ -8,15 +8,26 @@ import { appendImageWithStyles } from "../helpers";
  * @see https://github.com/MagicJinn/MrBeastify-Youtube
  */
 export function addYouTubeThumbnails(settings: Partial<Settings["youtube"]>) {
+  console.log("[With FWMC] Adding YouTube thumbnails...");
+
   const thumbnailImages = [
     ...Array.from(document.querySelectorAll("ytd-thumbnail a > yt-image > img.yt-core-image")), // general video
-    ...Array.from(document.querySelectorAll("img.style-scope.yt-img-shadow[width=\"86\"]")), // notfication thumbnails
-    // ...document.querySelectorAll('ytm-shorts-lockup-view-model > a > div.shortsLockupViewModelHostThumbnailContainer'), // short video
-    ...Array.from(document.querySelectorAll(".yt-core-image.shortsLockupViewModelHostThumbnail")), // short video
     ...Array.from(document.querySelectorAll("yt-thumbnail-view-model > div.yt-thumbnail-view-model__image > img.yt-core-image")), // general video
-    ...Array.from(document.querySelectorAll("yt-image-banner-view-model > img.yt-core-image")), // channel banner images
+    ...Array.from(document.querySelectorAll("yt-thumbnail-view-model img.ytCoreImageHost")), // general video
+
     ...Array.from(document.querySelectorAll("ytm-thumbnail-cover img.yt-core-image")), // youtube mobile thumbnail
+    ...Array.from(document.querySelectorAll("ytm-thumbnail-cover img.ytCoreImageHost")), // youtube mobile thumbnail
+
+    ...Array.from(document.querySelectorAll("img.style-scope.yt-img-shadow[width=\"86\"]")), // notfication thumbnails
+
+    ...Array.from(document.querySelectorAll(".yt-core-image.shortsLockupViewModelHostThumbnail")), // short video
+    ...Array.from(document.querySelectorAll(".ytCoreImageHost.shortsLockupViewModelHostThumbnail")), // short video
+
+    ...Array.from(document.querySelectorAll("yt-image-banner-view-model > img.yt-core-image")), // channel banner images
+    ...Array.from(document.querySelectorAll("yt-image-banner-view-model > img.ytCoreImageHost")), // channel banner images
   ];
+
+  console.log("[With FWMC] Found YouTube thumbnails:", thumbnailImages);
 
   thumbnailImages.forEach((thumbnail) => {
     try {
